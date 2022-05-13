@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { showAllUsers } from "../controllers/user.controller";
+import { showAllUsers, showUserWithId, showUserWithRange } from "../controllers/user.controller";
 
 export const UserRoute = () => {
     const router = Router();
 
     router.get('/all', showAllUsers);
-    // router.get('/users/:id');
+    router.get('/:id', showUserWithId);
+    router.get('/', showUserWithRange);
     // router.get('/users/all');
 
     return router;
