@@ -15,6 +15,6 @@ app.use(express.json());
 app.use('/api/v1/users/', UserRoute());
 
 app.listen(PORT, () => {
-    console.log(`Server sudah berjalan pada localhost:${PORT}`);
+    console.log(`Server is running at http://localhost:${PORT}`);
 });
 

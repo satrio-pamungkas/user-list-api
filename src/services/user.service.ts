@@ -21,10 +21,42 @@ const getUsersByRange = async (offset: number, limit: number) => {
     });
 }
 
-const getUserRowsCount = async () => {
-    return await prisma.user_list.count();
+const getUserRowsCount = async (search: string) => {
+    return await prisma.user_list.count({
+        where: {
+            OR: [
+                { first_name: { contains: search }},
+                { last_name: { contains: search }},
+                { email: { contains: search }},
+                { phone_number: { contains: search }},
+                { gender: { contains: search }},
+                { street_address: { contains: search }}
+            ]
+        }
+    });
 }
 
-export { getAllUsers, getUserById, getUsersByRange, getUserRowsCount };
+const getUserByFilter = async (offset: number, limit: number, search: string, sort_by: string, order_by: string ) => {
+    return await prisma.user_list.findMany({
+        where: {
+            OR: [
+                { first_name: { contains: search }},
+                { last_name: { contains: search }},
+                { email: { contains: search }},
+                { phone_number: { contains: search }},
+                { gender: { contains: search }},
+                { street_address: { contains: search }}
+            ]
+        },
+        orderBy: {
+            [sort_by]: order_by
+        },
+        skip: offset,
+        take: limit
+    });
+
+}
+
+export { getAllUsers, getUserById, getUsersByRange, getUserRowsCount, getUserByFilter };
 
 
