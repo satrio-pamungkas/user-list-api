@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getAllUsers, getUserByFilter, getUserById, getUserRowsCount, getUsersByRange } from '../services/user.service';
 import { getPagination } from '../utils/helper.util';
+import client from '../configs/redis.config';
 
 const showAllUsers = async (req: Request, res: Response) => {
     try {
@@ -9,6 +10,9 @@ const showAllUsers = async (req: Request, res: Response) => {
         if (data === null) {
             throw new Error('Data is empty');
         }
+
+        await client.set('get-all-data', JSON.stringify(data));
+        await client.expire('get-all-data', 120);
 
         return res.status(200).json(data);
 
