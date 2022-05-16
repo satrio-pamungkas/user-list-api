@@ -16,7 +16,15 @@ app.use(express.json());
 app.use('/api/v1/users/', UserRoute());
 
 app.listen(PORT, async () => {
-    await client.connect();
+    await client.connect()
+        .then(() => {
+            console.log('Succesfully connnected to Redis cache');
+        })
+        .catch(() => {
+            console.log('Failed to connect Redis cache');
+            client.quit();
+        });
+
     console.log(`Server is running at http://localhost:${PORT}`);
 });
 

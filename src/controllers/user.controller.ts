@@ -11,8 +11,13 @@ const showAllUsers = async (req: Request, res: Response) => {
             throw new Error('Data is empty');
         }
 
-        await client.set('get-all-data', JSON.stringify(data));
-        await client.expire('get-all-data', 120);
+        try {
+            await client.set('get-all-data', JSON.stringify(data));
+            await client.expire('get-all-data', 120);
+            
+        } catch {
+            console.log('Sending without cache');
+        }
 
         return res.status(200).json(data);
 
@@ -25,7 +30,7 @@ const showAllUsers = async (req: Request, res: Response) => {
 
 const showUserWithId = async (req: Request, res: Response) => {
     try {
-        const id: any = req.params;
+        const id: any = req.params.id;
         const data: any = await getUserById(id);
 
         if (data === null) {
