@@ -1,0 +1,17 @@
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: User List Management API
+  description: This is documentation and specification for API that are used in User List Management System
+  license: 
+    name: MIT License
+    url: https://github.com/satrio-pamungkas/user-list-api/blob/main/LICENSE
+host: localhost
+basePath: /api/v1
+securityDefinitions: {}
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
