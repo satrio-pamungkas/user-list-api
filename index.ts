@@ -8,7 +8,7 @@ import { UserRoute } from './src/routes/user.route';
 
 dotenv.config();
 
-const app: Express = express();
+export const app: Express = express();
 const PORT: any = process.env.PORT;
 const swaggerDoc: any = YAML.load('./docs/swagger.yaml');
 
