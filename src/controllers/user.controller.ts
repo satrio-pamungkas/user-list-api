@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAllUsers, getUserByFilter, getUserById, getUserRowsCount, getUsersByRange } from '../services/user.service';
+import { getAllUsers, getUserByFilter, getUserById, getUserRowsCount, getUsersByRange } from '../models/user.model';
 import { getPagination } from '../utils/helper.util';
 import client from '../configs/redis.config';
 

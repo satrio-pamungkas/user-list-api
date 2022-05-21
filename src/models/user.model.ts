@@ -58,5 +58,3 @@ const getUserByFilter = async (offset: number, limit: number, search: string, so
 }
 
 export { getAllUsers, getUserById, getUsersByRange, getUserRowsCount, getUserByFilter };
-
-
