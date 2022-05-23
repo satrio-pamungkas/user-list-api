@@ -52,7 +52,7 @@ const showUserWithFilter = async (req: Request, res: Response) => {
         const search: string = req.query.search as any || '';
         const sort_by: string = req.query.sort_by as any || 'first_name';
         const order_by: string =  req.query.order_by as any || 'asc';
-        const { limit, offset } = getPagination(page - 1, size);
+        const { limit, offset } = await getPagination(page - 1, size);
 
         const data: any = await getUserByFilter(offset, limit, search, sort_by, order_by);
 

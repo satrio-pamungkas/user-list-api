@@ -7,7 +7,7 @@ afterEach(() => {
     jest.resetAllMocks();
 });
 
-describe('showAllUsers', () => { 
+describe("showAllUsers", () => { 
     test("Should return 200", async () => {
         const result = await request(app).get("/api/v1/users/all").send();
         expect(result.status).toBe(200);
