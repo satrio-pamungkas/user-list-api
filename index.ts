@@ -14,8 +14,9 @@ const PORT: any = process.env.PORT;
 const swaggerDoc: any = YAML.load('./docs/swagger.yaml');
 
 app.use(cors());
-app.use(express.static('public'));
+app.use("/public", express.static(__dirname + "/src/views/public/"));
 app.use(express.json());
+app.set('view engine', 'ejs');
 
 app.use('/api/v1/users/', UserRoute());
 app.use('/api/v1/print-pdf', InvoiceRouter());
