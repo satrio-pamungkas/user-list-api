@@ -5,6 +5,7 @@ import client from './src/configs/redis.config';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import { UserRoute } from './src/routes/user.route';
+import { InvoiceRouter } from './src/routes/invoice.route';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.static('public'));
 app.use(express.json());
 
 app.use('/api/v1/users/', UserRoute());
+app.use('/api/v1/print-pdf', InvoiceRouter());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.listen(PORT, async () => {
